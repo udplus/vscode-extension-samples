@@ -94,8 +94,8 @@ export class Emojinfo implements vscode.CodeActionProvider {
 	provideCodeActions(document: vscode.TextDocument, range: vscode.Range | vscode.Selection, context: vscode.CodeActionContext, token: vscode.CancellationToken): vscode.CodeAction[] {
 		// for each diagnostic entry that has the matching `code`, create a code action command
 		return context.diagnostics
-			.filter(diagnostic => diagnostic.code === EMOJI_MENTION)
-			.map(diagnostic => this.createCommandCodeAction(diagnostic));
+			.filter((diagnostic: { code: string; }) => diagnostic.code === EMOJI_MENTION)
+			.map((diagnostic: any) => this.createCommandCodeAction(diagnostic));
 	}
 
 	private createCommandCodeAction(diagnostic: vscode.Diagnostic): vscode.CodeAction {
